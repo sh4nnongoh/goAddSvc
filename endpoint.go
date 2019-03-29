@@ -22,7 +22,7 @@ type Endpoints struct {
 
 // Add implements the service interface, so Endpoints may be used as a service.
 // This is primarily useful in the context of a client library.
-func (s Endpoints) Add(ctx context.Context, a, b float64) (float64, error) {
+func (s Endpoints) Add(ctx context.Context, a, b RealNum) (RealNum, error) {
 	resp, err := s.addEndpoint(ctx, addRequest{A: a, B: b})
 	if err != nil {
 		return 0, err
@@ -46,12 +46,12 @@ var (
 
 // addRequest collects the request parameters for the Add method.
 type addRequest struct {
-	A, B float64
+	A, B RealNum
 }
 
 // addResponse collects the response values for the Add method.
 type addResponse struct {
-	V   float64 `json:"v"`
+	V   RealNum `json:"v"`
 	Err error   `json:"-"` // should be intercepted by Failed/errorEncoder
 }
 

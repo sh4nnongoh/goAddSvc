@@ -22,7 +22,7 @@ type svcLoggingMiddleware struct {
 	next   Service
 }
 
-func (mw svcLoggingMiddleware) Add(ctx context.Context, a, b float64) (v float64, err error) {
+func (mw svcLoggingMiddleware) Add(ctx context.Context, a, b RealNum) (v RealNum, err error) {
 	defer func() {
 		mw.logger.Log("method", "Add", "a", a, "b", b, "v", v, "err", err)
 	}()

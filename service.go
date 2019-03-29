@@ -8,7 +8,7 @@ import (
 )
 
 type Service interface {
-	Add(context.Context, float64, float64) (float64, error)
+	Add(context.Context, RealNum, RealNum) (RealNum, error)
 }
 
 func NewService(logger log.Logger) Service {
@@ -22,7 +22,7 @@ func NewService(logger log.Logger) Service {
 
 type service struct{}
 
-func (s service) Add(_ context.Context, a, b float64) (float64, error) {
+func (s service) Add(_ context.Context, a, b RealNum) (RealNum, error) {
 	if a == 0 && b == 0 {
 		return 0, ErrTwoZeroes
 	}
@@ -31,6 +31,8 @@ func (s service) Add(_ context.Context, a, b float64) (float64, error) {
 	}
 	return a + b, nil
 }
+
+type RealNum float64
 
 const (
 	intMax = 1<<31 - 1

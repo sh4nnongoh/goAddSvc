@@ -68,7 +68,7 @@ func main() {
 	case "add":
 		a, _ := strconv.ParseInt(fs.Args()[0], 10, 64)
 		b, _ := strconv.ParseInt(fs.Args()[1], 10, 64)
-		v, err := svc.Add(context.Background(), float64(a), float64(b))
+		v, err := svc.Add(context.Background(), goAddSvc.RealNum(a), goAddSvc.RealNum(b))
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error: %v\n", err)
 			os.Exit(1)
